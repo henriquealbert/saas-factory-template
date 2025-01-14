@@ -1,9 +1,9 @@
-import { Input } from '@/components/input'
+import { Input } from '@/components/ui/input'
 import { Head } from '@inertiajs/react'
 import { motion } from 'framer-motion'
-import { HeroHighlight, Highlight } from '@/components/hero-highlight'
-import { Button } from '@/components/button'
-import { FeatureSectionCard } from '@/components/feature-section-card'
+import { HeroHighlight, Highlight } from '@/components/ui/hero-highlight'
+import { Button } from '@/components/ui/button'
+import { FeatureSectionCard } from '@/components/ui/feature-section-card'
 import { ArrowRight } from 'lucide-react'
 
 export default function Home() {

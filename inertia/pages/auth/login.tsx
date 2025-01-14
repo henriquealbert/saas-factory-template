@@ -1,4 +1,4 @@
-import { Button } from '@/components/button'
+import { LoginForm } from '@/components/login-form'
 import { Head } from '@inertiajs/react'
 
 export default function Login() {
@@ -6,8 +6,11 @@ export default function Login() {
     <>
       <Head title="Login" />
 
-      <h1>Login</h1>
-      <Button>Login</Button>
+      <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
+        <div className="w-full max-w-md md:max-w-md">
+          <LoginForm />
+        </div>
+      </div>
     </>
   )
 }

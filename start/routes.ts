@@ -13,9 +13,10 @@ const SessionController = () => import('#controllers/session_controller')
 
 /*
 |--------------------------------------------------------------------------
-| Public
+| Pages
 |--------------------------------------------------------------------------
 */
+// Public
 router.group(() => {
   router.on('/').renderInertia('home')
   router.on('/login').renderInertia('auth/login')
@@ -25,28 +26,10 @@ router.group(() => {
   router.on('/verify-email/:token').renderInertia('auth/verify-email')
 })
 
-/*
-|--------------------------------------------------------------------------
-| Auth
-|--------------------------------------------------------------------------
-*/
-router.post('login', [SessionController, 'login']).use(middleware.guest())
-router.post('logout', [SessionController, 'logout']).use(middleware.auth({ guards: ['web'] }))
-
-/*
-|--------------------------------------------------------------------------
-| Dashboard
-|--------------------------------------------------------------------------
-*/
+// Protected
 router
   .group(() => {
-    // router.on('/').renderInertia('app/home')
-    router.get('/', async ({ inertia, auth }) => {
-      const user = await auth.authenticateUsing(['web'])
-      console.log(user)
-
-      return inertia.render('app/home', { user })
-    })
+    router.on('/').renderInertia('app/home')
 
     // User settings
     router
@@ -57,3 +40,22 @@ router
   })
   .prefix('/app')
   .use(middleware.auth({ guards: ['web'] }))
+
+/*
+|--------------------------------------------------------------------------
+| API
+|--------------------------------------------------------------------------
+*/
+router
+  .group(() => {
+    router
+      .group(() => {
+        router.post('/login', [SessionController, 'login'])
+        router.post('/register', [SessionController, 'register'])
+        router
+          .get('/logout', [SessionController, 'logout'])
+          .use(middleware.auth({ guards: ['web'] }))
+      })
+      .prefix('/auth')
+  })
+  .prefix('/api/v1')

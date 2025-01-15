@@ -1,34 +1,42 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import { storeSessionValidator } from '#validators/session'
+import { UserService } from '#services/user_service'
+import { createUserValidator } from '#validators/user'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export default class SessionController {
-  async login({ request, auth, response }: HttpContext) {
-    /**
-     * Step 1: Get credentials from the request body
-     */
-    const { email, password, rememberMe } = await request.validateUsing(storeSessionValidator)
+  constructor(private userService: UserService) {}
 
-    /**
-     * Step 2: Verify credentials
-     */
-    const user = await User.verifyCredentials(email, password)
+  async login({ request, auth, response, session }: HttpContext) {
+    try {
+      const { email, password, rememberMe } = await request.validateUsing(storeSessionValidator)
 
-    /**
-     * Step 3: Login user
-     */
-    await auth.use('web').login(
-      user,
-      /**
-       * Generate token when "rememberMe" input exists
-       */
-      rememberMe
-    )
+      const user = await User.verifyCredentials(email, password)
 
-    /**
-     * Step 4: Send them to a protected route
-     */
-    response.redirect('/app')
+      await auth.use('web').login(user, rememberMe)
+
+      return response.redirect('/app')
+    } catch (error) {
+      session.flash('errors', { error: 'Invalid credentials' })
+      return response.redirect().back()
+    }
+  }
+
+  async register({ request, response, auth, session }: HttpContext) {
+    try {
+      const { email, password } = await request.validateUsing(createUserValidator)
+
+      const user = await this.userService.createUser({ email, password })
+
+      await auth.use('web').login(user)
+
+      return response.redirect('/app')
+    } catch (error) {
+      session.flash('errors', { error: 'Registration failed' })
+      return response.redirect().back()
+    }
   }
 
   async logout({ auth, response }: HttpContext) {

@@ -1,5 +1,7 @@
+import type User from '#models/user'
 import { defineConfig } from '@adonisjs/inertia'
 import type { InferSharedProps, PageProps } from '@adonisjs/inertia/types'
+import { ModelAttributes } from '@adonisjs/lucid/types/model'
 
 const inertiaConfig = defineConfig({
   /**
@@ -12,6 +14,7 @@ const inertiaConfig = defineConfig({
    */
   sharedData: {
     errors: (ctx) => ctx.inertia.always(() => ctx.session?.flashMessages.get('errors')),
+    user: (ctx) => ctx.auth?.user,
   },
 
   /**
@@ -20,12 +23,13 @@ const inertiaConfig = defineConfig({
   ssr: {
     enabled: true,
     entrypoint: 'inertia/app/ssr.tsx',
-    pages: (_, page) => !page.startsWith('app'),
   },
 })
 
 export default inertiaConfig
 
 declare module '@adonisjs/inertia/types' {
-  export interface SharedProps extends InferSharedProps<typeof inertiaConfig>, PageProps {}
+  export interface SharedProps extends InferSharedProps<typeof inertiaConfig>, PageProps {
+    user: ModelAttributes<User>
+  }
 }

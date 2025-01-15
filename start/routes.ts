@@ -8,6 +8,8 @@
 */
 
 import router from '@adonisjs/core/services/router'
+import { middleware } from '#start/kernel'
+const SessionController = () => import('#controllers/session_controller')
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +27,26 @@ router.group(() => {
 
 /*
 |--------------------------------------------------------------------------
+| Auth
+|--------------------------------------------------------------------------
+*/
+router.post('login', [SessionController, 'login']).use(middleware.guest())
+router.post('logout', [SessionController, 'logout']).use(middleware.auth({ guards: ['web'] }))
+
+/*
+|--------------------------------------------------------------------------
 | Dashboard
 |--------------------------------------------------------------------------
 */
 router
   .group(() => {
-    router.on('/').renderInertia('app/home')
+    // router.on('/').renderInertia('app/home')
+    router.get('/', async ({ inertia, auth }) => {
+      const user = await auth.authenticateUsing(['web'])
+      console.log(user)
+
+      return inertia.render('app/home', { user })
+    })
 
     // User settings
     router
@@ -40,3 +56,4 @@ router
       .prefix('/settings')
   })
   .prefix('/app')
+  .use(middleware.auth({ guards: ['web'] }))

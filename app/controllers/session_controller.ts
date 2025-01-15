@@ -16,7 +16,7 @@ export default class SessionController {
       const user = await User.verifyCredentials(email, password)
       console.log(user)
 
-      await auth.use('web').login(user)
+      await auth.use('web').login(user, rememberMe)
 
       return response.redirect('/app')
     } catch (error) {

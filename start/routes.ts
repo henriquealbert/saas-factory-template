@@ -17,14 +17,16 @@ const SessionController = () => import('#controllers/session_controller')
 |--------------------------------------------------------------------------
 */
 // Public
-router.group(() => {
-  router.on('/').renderInertia('home')
-  router.on('/login').renderInertia('auth/login')
-  router.on('/register').renderInertia('auth/register')
-  router.on('/forgot-password').renderInertia('auth/forgot-password')
-  router.on('/reset-password').renderInertia('auth/reset-password')
-  router.on('/verify-email/:token').renderInertia('auth/verify-email')
-})
+router
+  .group(() => {
+    router.on('/').renderInertia('home')
+    router.on('/login').renderInertia('auth/login')
+    router.on('/register').renderInertia('auth/register')
+    router.on('/forgot-password').renderInertia('auth/forgot-password')
+    router.on('/reset-password').renderInertia('auth/reset-password')
+    router.on('/verify-email/:token').renderInertia('auth/verify-email')
+  })
+  .use(middleware.guest())
 
 // Protected
 router
@@ -52,10 +54,9 @@ router
       .group(() => {
         router.post('/login', [SessionController, 'login'])
         router.post('/register', [SessionController, 'register'])
-        router
-          .get('/logout', [SessionController, 'logout'])
-          .use(middleware.auth({ guards: ['web'] }))
+        router.get('/logout', [SessionController, 'logout'])
       })
       .prefix('/auth')
+      .use(middleware.guest())
   })
   .prefix('/api/v1')

@@ -14,11 +14,13 @@ export default class SessionController {
       const { email, password, rememberMe } = await request.validateUsing(storeSessionValidator)
 
       const user = await User.verifyCredentials(email, password)
+      console.log(user)
 
-      await auth.use('web').login(user, rememberMe)
+      await auth.use('web').login(user)
 
       return response.redirect('/app')
     } catch (error) {
+      console.log(error)
       session.flash('errors', { error: 'Invalid credentials' })
       return response.redirect().back()
     }

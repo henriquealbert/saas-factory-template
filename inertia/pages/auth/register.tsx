@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { RegisterFooter } from '@/features/auth/register-footer'
+import { AuthFooter } from '@/features/auth/auth-footer'
 import { RegisterForm } from '@/features/auth/register-form'
 import { RegisterSection } from '@/features/auth/register-section'
 import { Head } from '@inertiajs/react'
@@ -19,7 +19,7 @@ export default function Register() {
                 <RegisterSection />
               </CardContent>
             </Card>
-            <RegisterFooter />
+            <AuthFooter />
           </div>
         </div>
       </div>

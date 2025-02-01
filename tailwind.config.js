@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+
+import tailwindcssAnimate from 'tailwindcss-animate'
+
+export default {
   darkMode: ['class'],
-  content: ['./inertia/**/*.{js,ts,jsx,tsx}', './resources/**/*.{edge,js,ts,jsx,tsx}'],
+  content: ['./inertia/**/*.{js,ts,jsx,tsx}', './resources/views/**/*.{edge,js,ts,jsx,tsx}'],
   theme: {
     fontFamily: { sans: ['Geist'] },
     extend: {
@@ -47,5 +50,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+
+  plugins: [tailwindcssAnimate],
 }

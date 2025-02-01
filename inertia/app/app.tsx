@@ -5,13 +5,12 @@ import '../css/app.css'
 import { hydrateRoot } from 'react-dom/client'
 import { createInertiaApp } from '@inertiajs/react'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
-
-const appName = import.meta.env.VITE_APP_NAME || 'AdonisJS'
+import { sharedAppConfig } from './shared_app_config'
 
 createInertiaApp({
   progress: { color: '#5468FF' },
 
-  title: (title) => `${appName} | ${title}`,
+  title: sharedAppConfig.title,
 
   resolve: (name) => {
     return resolvePageComponent(`../pages/${name}.tsx`, import.meta.glob('../pages/**/*.tsx'))

@@ -1,7 +1,5 @@
-import type User from '#models/user'
 import { defineConfig } from '@adonisjs/inertia'
 import type { InferSharedProps, PageProps } from '@adonisjs/inertia/types'
-import { ModelAttributes } from '@adonisjs/lucid/types/model'
 
 const inertiaConfig = defineConfig({
   /**
@@ -29,7 +27,5 @@ const inertiaConfig = defineConfig({
 export default inertiaConfig
 
 declare module '@adonisjs/inertia/types' {
-  export interface SharedProps extends InferSharedProps<typeof inertiaConfig>, PageProps {
-    user: ModelAttributes<User>
-  }
+  export interface SharedProps extends InferSharedProps<typeof inertiaConfig>, PageProps {}
 }

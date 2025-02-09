@@ -23,16 +23,13 @@ export default class RegisterController {
   }
 
   @inject()
-  async store({ request, response, session }: HttpContext, webRegister: WebRegister) {
+  async store({ request, response }: HttpContext, webRegister: WebRegister) {
     const data = await request.validateUsing(registerValidator)
 
-    // register the user
     const { invite } = await webRegister.handle({ data })
 
-    session.flash('success', 'Welcome to PlotMyCourse')
-
     if (invite) {
-      return response.redirect().toRoute('courses.index')
+      return response.redirect().toRoute('organizations.index')
     }
 
     return response.redirect().toRoute('organizations.create')

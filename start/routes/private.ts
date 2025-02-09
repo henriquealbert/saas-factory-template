@@ -1,16 +1,17 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+const OrganizationsController = () => import('#controllers/organizations_controller')
 
 router
   .group(() => {
-    router.on('/').renderInertia('app/home')
-
-    // User settings
     router
-      .group(() => {
-        router.on('/').renderInertia('app/settings/profile')
-      })
-      .prefix('/settings')
+      .get('/organizations/create', [OrganizationsController, 'create'])
+      .as('organizations.create')
+    router.post('/organizations', [OrganizationsController, 'store']).as('organizations.store')
+    router.put('/organizations/:id', [OrganizationsController, 'update']).as('organizations.update')
+    router.get('/organizations/:id', [OrganizationsController, 'active']).as('organizations.active')
+    router
+      .delete('/organizations/:id', [OrganizationsController, 'destroy'])
+      .as('organizations.destroy')
   })
-  .prefix('/app')
-  .use(middleware.auth({ guards: ['web'] }))
+  .use(middleware.auth())

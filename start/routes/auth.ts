@@ -6,9 +6,6 @@ const LoginController = () => import('#controllers/auth/login_controller')
 const LogoutController = () => import('#controllers/auth/logout_controller')
 const RegisterController = () => import('#controllers/auth/register_controller')
 
-/* ignore formatting, I find it easier to scan single-line route definitions */
-/* prettier-ignore-start */
-
 router.get('/register', [RegisterController, 'show']).as('register.show').use(middleware.guest())
 router.post('/register', [RegisterController, 'store']).as('register.store').use(middleware.guest())
 router.post('/logout', [LogoutController, 'handle']).as('logout').use(middleware.auth())

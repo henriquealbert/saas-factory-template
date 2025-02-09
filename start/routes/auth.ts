@@ -1,13 +1,32 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+const OrganizationsController = () => import('#controllers/organizations_controller')
+const ForgotPasswordsController = () => import('#controllers/auth/forgot_passwords_controller')
+const LoginController = () => import('#controllers/auth/login_controller')
+const LogoutController = () => import('#controllers/auth/logout_controller')
+const RegisterController = () => import('#controllers/auth/register_controller')
+
+/* ignore formatting, I find it easier to scan single-line route definitions */
+/* prettier-ignore-start */
+
+router.get('/register', [RegisterController, 'show']).as('register.show').use(middleware.guest())
+router.post('/register', [RegisterController, 'store']).as('register.store').use(middleware.guest())
+router.post('/logout', [LogoutController, 'handle']).as('logout').use(middleware.auth())
+
+router.get('/login', [LoginController, 'show']).as('login.show').use(middleware.guest())
+router.post('/login', [LoginController, 'store']).as('login.store').use(middleware.guest())
 
 router
   .group(() => {
-    router.on('/').renderInertia('home')
-    router.on('/login').renderInertia('auth/login')
-    router.on('/register').renderInertia('auth/register')
-    router.on('/forgot-password').renderInertia('auth/forgot-password')
-    router.on('/reset-password').renderInertia('auth/reset-password')
-    router.on('/verify-email/:token').renderInertia('auth/verify-email')
+    router.get('/', [ForgotPasswordsController, 'index']).as('index')
+    router.post('/', [ForgotPasswordsController, 'send']).as('send')
+    router.get('/reset/:value', [ForgotPasswordsController, 'reset']).as('reset')
+    router.post('/reset', [ForgotPasswordsController, 'update']).as('update')
   })
+  .prefix('/forgot-password')
+  .as('forgot_password')
   .use(middleware.guest())
+
+router
+  .get('/organizations/invites/:id/accept', [OrganizationsController, 'acceptInvite'])
+  .as('organizations.invites.accept')

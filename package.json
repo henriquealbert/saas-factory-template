@@ -70,6 +70,7 @@
     "@adonisjs/inertia": "^3.0.1",
     "@adonisjs/limiter": "^2.3.3",
     "@adonisjs/lucid": "^21.6.0",
+    "@adonisjs/mail": "^9.2.2",
     "@adonisjs/session": "^7.5.0",
     "@adonisjs/shield": "^8.1.1",
     "@adonisjs/static": "^1.1.1",

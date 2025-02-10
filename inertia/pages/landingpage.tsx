@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { FeatureSectionCard } from '@/components/ui/feature-section-card'
 import { ArrowRight } from 'lucide-react'
 
-export default function Home() {
+export default function LandingPage() {
   return (
     <>
       <Head title="Your Growth Engine" />

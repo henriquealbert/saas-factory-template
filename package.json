@@ -75,7 +75,6 @@
     "@adonisjs/shield": "^8.1.2",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^4.0.0",
-    "@hookform/resolvers": "^3.10.0",
     "@inertiajs/react": "^2.0.3",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.2",
@@ -91,11 +90,9 @@
     "pg": "^8.13.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.2",
     "reflect-metadata": "^0.2.2",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.24.1"
+    "tailwindcss-animate": "^1.0.7"
   },
   "hotHook": {
     "boundaries": [

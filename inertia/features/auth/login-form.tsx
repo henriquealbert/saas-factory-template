@@ -3,6 +3,7 @@ import { FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { SocialButtons } from '@/components/ui/social-buttons'
 import { Link, useForm } from '@inertiajs/react'
+import { CircleAlert } from 'lucide-react'
 
 export function LoginForm() {
   const form = useForm({
@@ -16,6 +17,10 @@ export function LoginForm() {
     form.post('/login')
   }
 
+  const alertError =
+    (form.errors as Record<string, string>)?.['E_INVALID_CREDENTIALS'] ||
+    (form.errors as Record<string, string>)?.['E_TOO_MANY_REQUESTS']
+
   return (
     <form className="p-6 md:p-8" onSubmit={onSubmit}>
       <div className="flex flex-col gap-6">
@@ -23,6 +28,19 @@ export function LoginForm() {
           <h1 className="text-2xl font-bold">Welcome back</h1>
           <p className="text-balance text-muted-foreground">Login to your Acme Inc account</p>
         </div>
+        {alertError && (
+          <div className="rounded-lg border border-red-500/50 px-4 py-3 text-red-600">
+            <p className="text-sm">
+              <CircleAlert
+                className="-mt-0.5 me-3 inline-flex opacity-60"
+                size={16}
+                strokeWidth={2}
+                aria-hidden="true"
+              />
+              {alertError}
+            </p>
+          </div>
+        )}
         <div className="grid gap-2">
           <FormItem>
             <FormLabel htmlFor="email">Email</FormLabel>

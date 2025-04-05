@@ -10,6 +10,7 @@ router
     router.post('/organizations', [OrganizationsController, 'store']).as('organizations.store')
     router.put('/organizations/:id', [OrganizationsController, 'update']).as('organizations.update')
     router.get('/organizations/:id', [OrganizationsController, 'active']).as('organizations.active')
+    router.get('/organizations', [OrganizationsController, 'index']).as('organizations.index')
     router
       .delete('/organizations/:id', [OrganizationsController, 'destroy'])
       .as('organizations.destroy')

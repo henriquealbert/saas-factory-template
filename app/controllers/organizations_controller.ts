@@ -16,6 +16,10 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class OrganizationsController {
   constructor(protected setActiveOrganization: SetActiveOrganization) {}
 
+  async index({ inertia }: HttpContext) {
+    return inertia.render('organizations/index')
+  }
+
   /**
    * Display form to create a new record
    */

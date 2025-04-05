@@ -8,6 +8,7 @@ const RegisterController = () => import('#controllers/auth/register_controller')
 
 router.get('/register', [RegisterController, 'show']).as('register.show').use(middleware.guest())
 router.post('/register', [RegisterController, 'store']).as('register.store').use(middleware.guest())
+
 router.post('/logout', [LogoutController, 'handle']).as('logout').use(middleware.auth())
 
 router.get('/login', [LoginController, 'show']).as('login.show').use(middleware.guest())

@@ -1,11 +1,11 @@
 /// <reference path="../../adonisrc.ts" />
 /// <reference path="../../config/inertia.ts" />
 
-import '../styles/app.css'
 import { hydrateRoot } from 'react-dom/client'
 import { createInertiaApp } from '@inertiajs/react'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { sharedAppConfig } from './shared_app_config'
+import { StylesProvider } from '@/styles/styles_provider'
 
 createInertiaApp({
   progress: { color: '#5468FF' },
@@ -17,6 +17,11 @@ createInertiaApp({
   },
 
   setup({ el, App, props }) {
-    hydrateRoot(el, <App {...props} />)
+    hydrateRoot(
+      el,
+      <StylesProvider>
+        <App {...props} />
+      </StylesProvider>
+    )
   },
 })

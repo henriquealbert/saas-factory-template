@@ -8,7 +8,11 @@ import './style.css'
 
 export function StylesProvider({ children }: { children: React.ReactNode }) {
   return (
-    <MantineProvider theme={shadcnTheme} cssVariablesResolver={shadcnCssVariableResolver}>
+    <MantineProvider
+      theme={shadcnTheme}
+      defaultColorScheme="light"
+      cssVariablesResolver={shadcnCssVariableResolver}
+    >
       {children}
     </MantineProvider>
   )

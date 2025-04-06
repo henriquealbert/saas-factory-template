@@ -786,3 +786,16 @@
 .mantine-ChartTooltip-tooltip {
   border: 1px solid var(--mantine-color-default-border);
 }
+
+/* Adicione isso ao seu arquivo style.css */
+.mantine-TextInput-input,
+.mantine-PasswordInput-input,
+.mantine-Input-input {
+  border-color: var(--mantine-color-gray-3) !important;
+}
+
+.mantine-TextInput-input:focus,
+.mantine-PasswordInput-input:focus,
+.mantine-Input-input:focus {
+  border-color: var(--mantine-primary-color-filled) !important;
+}

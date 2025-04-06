@@ -10,6 +10,7 @@ import {
   Alert,
   Divider,
   Group,
+  Anchor,
 } from '@mantine/core'
 import { IconAlertCircle } from '@tabler/icons-react'
 import { SocialButtons } from '@/components/auth/SocialButtons'
@@ -62,14 +63,9 @@ export function LoginForm() {
               <Text component="label" htmlFor="password" size="sm" fw={500}>
                 Password
               </Text>
-              <Text
-                component={Link}
-                href="/forgot-password"
-                size="xs"
-                className="underline-offset-2 hover:underline"
-              >
+              <Anchor component={Link} href="/forgot-password" size="xs" underline="hover">
                 Forgot your password?
-              </Text>
+              </Anchor>
             </Group>
             <PasswordInput
               id="password"
@@ -91,9 +87,9 @@ export function LoginForm() {
 
           <Text ta="center" size="sm">
             Don&apos;t have an account?{' '}
-            <Text component={Link} href="/register" className="underline underline-offset-4" span>
+            <Anchor component={Link} href="/register" underline="hover">
               Sign up
-            </Text>
+            </Anchor>
           </Text>
         </Stack>
       </form>

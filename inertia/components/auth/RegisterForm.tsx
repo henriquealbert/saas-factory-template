@@ -1,5 +1,15 @@
 import { Link, useForm } from '@inertiajs/react'
-import { TextInput, PasswordInput, Button, Stack, Title, Text, Box, Divider } from '@mantine/core'
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Stack,
+  Title,
+  Text,
+  Box,
+  Divider,
+  Anchor,
+} from '@mantine/core'
 import { SocialButtons } from '@/components/auth/SocialButtons'
 
 export function RegisterForm() {
@@ -53,9 +63,9 @@ export function RegisterForm() {
 
           <Text ta="center" size="sm">
             Already have an account?{' '}
-            <Text component={Link} href="/login" className="underline underline-offset-4" span>
+            <Anchor underline="hover" component={Link} href="/login">
               Sign in
-            </Text>
+            </Anchor>
           </Text>
         </Stack>
       </form>

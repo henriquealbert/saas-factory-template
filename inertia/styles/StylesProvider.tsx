@@ -2,7 +2,7 @@
 import '@mantine/core/styles.css'
 
 import { MantineProvider } from '@mantine/core'
-import { shadcnCssVariableResolver } from './cssVariableResolver'
+import { shadcnCssVariableResolver } from './css_variable_resolver'
 import { shadcnTheme } from './theme'
 import './style.css'
 

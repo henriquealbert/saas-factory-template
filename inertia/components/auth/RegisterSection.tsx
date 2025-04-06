@@ -10,7 +10,7 @@ export function RegisterSection() {
       p="xl"
       style={{
         'borderLeft': '1px solid var(--mantine-color-gray-2)',
-        '@media (max-width: 768px)': {
+        '@media (maxWidth: 768px)': {
           borderLeft: 'none',
         },
       }}

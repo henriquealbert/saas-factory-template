@@ -12,6 +12,15 @@
       rel="stylesheet"
     />
 
+    <script>
+      try {
+        var colorScheme = localStorage.getItem("mantine-color-scheme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: light)").matches;
+        var theme = colorScheme || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-mantine-color-scheme", theme);
+      } catch (e) {}
+    </script>
+
     @viteReactRefresh()
     @inertiaHead()
     @vite(['inertia/app/app.tsx', `inertia/pages/${page.component}.tsx`])

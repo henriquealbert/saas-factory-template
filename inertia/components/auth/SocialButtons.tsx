@@ -4,35 +4,14 @@ import { IconBrandGithub, IconBrandGoogle, IconBrandX } from '@tabler/icons-reac
 export function SocialButtons() {
   return (
     <Group grow gap="xs">
-      <ActionIcon
-        variant="outline"
-        aria-label="Login with Google"
-        color="gray.2"
-        size="xl"
-        h="52px"
-        radius="md"
-      >
-        <IconBrandGoogle color="#DB4437" size={18} stroke={1.3} />
+      <ActionIcon variant="default" aria-label="Login with Google" size="xl" h="72px" radius="md">
+        <IconBrandGoogle color="#DB4437" size={24} stroke={1.3} />
       </ActionIcon>
-      <ActionIcon
-        variant="outline"
-        aria-label="Login with X"
-        color="gray.2"
-        size="xl"
-        h="52px"
-        radius="md"
-      >
-        <IconBrandX color="#14171a" size={18} stroke={1.3} />
+      <ActionIcon variant="default" aria-label="Login with X" size="xl" h="72px" radius="md">
+        <IconBrandX color="#14171a" size={24} stroke={1.3} />
       </ActionIcon>
-      <ActionIcon
-        variant="outline"
-        aria-label="Login with GitHub"
-        color="gray.2"
-        size="xl"
-        h="52px"
-        radius="md"
-      >
-        <IconBrandGithub color="#000000" size={18} stroke={1.3} />
+      <ActionIcon variant="default" aria-label="Login with GitHub" size="xl" h="72px" radius="md">
+        <IconBrandGithub color="#000000" size={24} stroke={1.3} />
       </ActionIcon>
     </Group>
   )

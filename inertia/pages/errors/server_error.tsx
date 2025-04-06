@@ -1,11 +1,14 @@
+import { Container, Title, Text, Stack, Center } from '@mantine/core'
+
 export default function ServerError(props: { error: any }) {
   return (
-    <>
-      <div className="container">
-        <div className="title">Server Error</div>
-
-        <span>{props.error.message}</span>
-      </div>
-    </>
+    <Container size="sm">
+      <Center h="100vh">
+        <Stack gap="md" align="center">
+          <Title order={1}>Server Error</Title>
+          <Text size="lg">{props.error.message}</Text>
+        </Stack>
+      </Center>
+    </Container>
   )
 }

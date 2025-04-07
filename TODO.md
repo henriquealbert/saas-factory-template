@@ -2,7 +2,12 @@
 
 ## Priority 1: Basic User Authentication
 
-- [x] User authentication (signup, login, password reset)
+- [x] User authentication:
+  - [x] Signup
+  - [x] Login
+  - [x] Logout
+  - [x] Forgot password
+  - [x] Reset password
 - [ ] Account settings and profile management
   - [ ] Implement settings routes that are currently commented out in private.ts:
     - [ ] Settings Profile routes

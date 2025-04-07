@@ -11,8 +11,19 @@ const mailConfig = defineConfig({
    */
   mailers: {
     resend: transports.resend({
-      key: env.get('RESEND_API_KEY'),
       baseUrl: 'https://api.resend.com',
+      key: env.get('RESEND_API_KEY'),
+
+      /**
+       * The following options can be overridden at
+       * runtime when calling the `mail.send` method.
+       */
+      tags: [
+        {
+          name: 'category',
+          value: 'password_reset',
+        },
+      ],
     }),
   },
 })

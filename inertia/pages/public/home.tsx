@@ -1,7 +1,7 @@
 import { Group, Button, Container, Box, Divider } from '@mantine/core'
 import { Link } from '@inertiajs/react'
 
-export default function Root() {
+export default function PublicHome() {
   return (
     <Box py="md">
       <Container size="xl">

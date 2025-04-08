@@ -61,13 +61,7 @@ export function LoginForm() {
               <Text component="label" htmlFor="password" size="sm" fw={500}>
                 Password{' '}
               </Text>
-              <Anchor
-                component={Link}
-                href="/forgot-password"
-                size="sm"
-                c="primary"
-                underline="hover"
-              >
+              <Anchor component={Link} href="/forgot-password" size="sm" underline="hover">
                 Forgot your password?
               </Anchor>
             </Group>
@@ -89,7 +83,7 @@ export function LoginForm() {
 
         <Text size="sm" mt="md" c="dimmed">
           Don&apos;t have an account?{' '}
-          <Anchor c="primary" component={Link} href="/register" underline="hover">
+          <Anchor component={Link} href="/register" underline="hover">
             Create account
           </Anchor>
         </Text>

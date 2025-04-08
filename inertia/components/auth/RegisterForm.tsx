@@ -59,18 +59,18 @@ export function RegisterForm() {
 
         <Text size="sm" mt="md">
           By creating an account you agree to our{' '}
-          <Anchor component={Link} href="/terms" underline="hover" c="primary">
+          <Anchor component={Link} href="/terms" underline="hover">
             Terms of Service
           </Anchor>{' '}
           and{' '}
-          <Anchor component={Link} href="/privacy" underline="hover" c="primary">
+          <Anchor component={Link} href="/privacy" underline="hover">
             Privacy Policy
           </Anchor>
         </Text>
 
         <Text size="sm" mt="md">
           Already have an account?{' '}
-          <Anchor component={Link} href="/login" underline="hover" c="primary">
+          <Anchor component={Link} href="/login" underline="hover">
             Sign in
           </Anchor>
         </Text>

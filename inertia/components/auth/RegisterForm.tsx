@@ -1,21 +1,14 @@
+import { Anchor, Button, PasswordInput, TextInput, Text } from '@mantine/core'
 import { Link, useForm } from '@inertiajs/react'
-import {
-  TextInput,
-  PasswordInput,
-  Button,
-  Stack,
-  Title,
-  Text,
-  Box,
-  Divider,
-  Anchor,
-} from '@mantine/core'
-import { SocialButtons } from '@/components/auth/SocialButtons'
+import { Stack } from '@mantine/core'
+import { IconChevronRight } from '@tabler/icons-react'
 
 export function RegisterForm() {
   const form = useForm({
+    name: '',
     email: '',
     password: '',
+    password_confirmation: '',
   })
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -24,51 +17,64 @@ export function RegisterForm() {
   }
 
   return (
-    <Box p={{ base: 'md', md: 'lg' }}>
-      <form onSubmit={onSubmit}>
-        <Stack gap="md">
-          <Stack align="center" gap="xs">
-            <Title order={2}>Create your free account</Title>
-            <Text size="sm" c="dimmed" ta="center">
-              Insert your email and password to create your account
-            </Text>
-          </Stack>
+    <form onSubmit={onSubmit}>
+      <Stack gap="xl">
+        <TextInput
+          label="Name"
+          placeholder="Your name"
+          value={form.data.name}
+          onChange={(e) => form.setData('name', e.target.value)}
+          error={form.errors.name}
+        />
 
-          <TextInput
-            label="Email"
-            placeholder="your@email.com"
-            type="email"
-            required
-            value={form.data.email}
-            onChange={(e) => form.setData('email', e.target.value)}
-            error={form.errors.email}
-          />
+        <TextInput
+          label="Email"
+          placeholder="your@email.com"
+          type="email"
+          value={form.data.email}
+          onChange={(e) => form.setData('email', e.target.value)}
+          error={form.errors.email}
+        />
 
-          <PasswordInput
-            label="Password"
-            placeholder="Your password"
-            required
-            value={form.data.password}
-            onChange={(e) => form.setData('password', e.target.value)}
-            error={form.errors.password}
-          />
+        <PasswordInput
+          label="Password"
+          placeholder="Your password"
+          description="Must be at least 12 characters in length"
+          value={form.data.password}
+          onChange={(e) => form.setData('password', e.target.value)}
+          error={form.errors.password}
+        />
 
-          <Button type="submit" fullWidth>
-            Create your account
-          </Button>
+        <PasswordInput
+          label="Confirm password"
+          placeholder="Confirm your password"
+          value={form.data.password_confirmation}
+          onChange={(e) => form.setData('password_confirmation', e.target.value)}
+          error={form.errors.password_confirmation}
+        />
 
-          <Divider label="Or continue with" labelPosition="center" />
+        <Button type="submit" fullWidth mt="md">
+          Continue <IconChevronRight size={16} />
+        </Button>
 
-          <SocialButtons />
+        <Text size="sm" mt="md">
+          By creating an account you agree to our{' '}
+          <Anchor component={Link} href="/terms" underline="hover" c="primary">
+            Terms of Service
+          </Anchor>{' '}
+          and{' '}
+          <Anchor component={Link} href="/privacy" underline="hover" c="primary">
+            Privacy Policy
+          </Anchor>
+        </Text>
 
-          <Text ta="center" size="sm">
-            Already have an account?{' '}
-            <Anchor underline="hover" component={Link} href="/login">
-              Sign in
-            </Anchor>
-          </Text>
-        </Stack>
-      </form>
-    </Box>
+        <Text size="sm" mt="md">
+          Already have an account?{' '}
+          <Anchor component={Link} href="/login" underline="hover" c="primary">
+            Sign in
+          </Anchor>
+        </Text>
+      </Stack>
+    </form>
   )
 }

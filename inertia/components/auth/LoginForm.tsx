@@ -4,19 +4,20 @@ import {
   PasswordInput,
   Button,
   Stack,
-  Title,
   Text,
-  Box,
   Alert,
-  Divider,
-  Group,
   Anchor,
+  Group,
+  Checkbox,
 } from '@mantine/core'
-import { IconAlertCircle } from '@tabler/icons-react'
-import { SocialButtons } from '@/components/auth/SocialButtons'
+import { IconAlertCircle, IconChevronRight } from '@tabler/icons-react'
 
 export function LoginForm() {
-  const form = useForm({
+  const form = useForm<{
+    email: string
+    password: string
+    remember: boolean
+  }>({
     email: '',
     password: '',
     remember: false,
@@ -32,67 +33,61 @@ export function LoginForm() {
     (form.errors as Record<string, string>)?.['E_TOO_MANY_REQUESTS']
 
   return (
-    <Box p={{ base: 'md', md: 'lg' }}>
-      <form onSubmit={onSubmit}>
-        <Stack gap="md">
-          <Stack align="center" gap="xs">
-            <Title order={2}>Welcome back</Title>
-            <Text size="sm" c="dimmed" ta="center">
-              Login to your Acme Inc account
-            </Text>
-          </Stack>
+    <form onSubmit={onSubmit}>
+      <Stack gap="xl">
+        {alertError && (
+          <Alert color="red" title="Error" icon={<IconAlertCircle size={16} />} variant="light">
+            {alertError}
+          </Alert>
+        )}
 
-          {alertError && (
-            <Alert color="red" title="Error" icon={<IconAlertCircle size={16} />} variant="light">
-              {alertError}
-            </Alert>
-          )}
+        <TextInput
+          label="Email"
+          placeholder="your@email.com"
+          type="email"
+          value={form.data.email}
+          onChange={(e) => form.setData('email', e.target.value)}
+          error={form.errors.email}
+        />
 
-          <TextInput
-            label="Email"
-            placeholder="your@email.com"
-            type="email"
-            required
-            value={form.data.email}
-            onChange={(e) => form.setData('email', e.target.value)}
-            error={form.errors.email}
-          />
-
-          <Box>
-            <Group justify="space-between" mb={5}>
+        <PasswordInput
+          labelProps={{
+            style: {
+              width: '100%',
+            },
+          }}
+          label={
+            <Group justify="space-between" w="100%">
               <Text component="label" htmlFor="password" size="sm" fw={500}>
-                Password
+                Password{' '}
               </Text>
-              <Anchor component={Link} href="/forgot-password" size="xs" underline="hover">
+              <Anchor component={Link} href="/forgot-password" size="sm" underline="hover">
                 Forgot your password?
               </Anchor>
             </Group>
-            <PasswordInput
-              id="password"
-              placeholder="Your password"
-              required
-              value={form.data.password}
-              onChange={(e) => form.setData('password', e.target.value)}
-              error={form.errors.password}
-            />
-          </Box>
+          }
+          placeholder="Your password"
+          value={form.data.password}
+          onChange={(e) => form.setData('password', e.target.value)}
+          error={form.errors.password}
+        />
+        <Checkbox
+          label="Remember me"
+          checked={form.data.remember}
+          onChange={(e) => form.setData('remember', e.currentTarget.checked)}
+        />
 
-          <Button type="submit" fullWidth>
-            Login
-          </Button>
+        <Button type="submit" fullWidth mt="md">
+          Login <IconChevronRight size={16} />
+        </Button>
 
-          <Divider label="Or continue with" labelPosition="center" />
-
-          <SocialButtons />
-
-          <Text ta="center" size="sm">
-            Don&apos;t have an account?{' '}
-            <Anchor component={Link} href="/register" underline="hover">
-              Sign up
-            </Anchor>
-          </Text>
-        </Stack>
-      </form>
-    </Box>
+        <Text size="sm" mt="md" c="dimmed">
+          Don&apos;t have an account?{' '}
+          <Anchor component={Link} href="/register" underline="hover">
+            Create account
+          </Anchor>
+        </Text>
+      </Stack>
+    </form>
   )
 }

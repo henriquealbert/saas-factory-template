@@ -11,10 +11,10 @@ export default function Root() {
           </Link>
 
           <Group gap="xs">
-            <Button component={Link} href="/login" variant="default">
+            <Button component={Link} href="/login" variant="subtle">
               Login
             </Button>
-            <Button component={Link} href="/register">
+            <Button component={Link} href="/register" variant="outline">
               Sign up
             </Button>
           </Group>

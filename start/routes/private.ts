@@ -1,6 +1,9 @@
-// import router from '@adonisjs/core/services/router'
-// import { middleware } from '#start/kernel'
+import router from '@adonisjs/core/services/router'
+import { middleware } from '#start/kernel'
+const HomeController = () => import('#controllers/home_controller')
 // const OrganizationsController = () => import('#controllers/organizations_controller')
+
+router.get('/dashboard', [HomeController, 'index']).as('home.index').use(middleware.auth())
 
 // router
 //   .group(() => {

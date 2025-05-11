@@ -1,24 +1,27 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 const HomeController = () => import('#controllers/home_controller')
-// const OrganizationsController = () => import('#controllers/organizations_controller')
+const OrganizationsController = () => import('#controllers/organizations_controller')
 
 router.get('/dashboard', [HomeController, 'index']).as('home.index').use(middleware.auth())
 
-// router
-//   .group(() => {
-//     router
-//       .get('/organizations/create', [OrganizationsController, 'create'])
-//       .as('organizations.create')
-//     router.post('/organizations', [OrganizationsController, 'store']).as('organizations.store')
-//     router.put('/organizations/:id', [OrganizationsController, 'update']).as('organizations.update')
-//     router.get('/organizations/:id', [OrganizationsController, 'active']).as('organizations.active')
-//     router.get('/organizations', [OrganizationsController, 'index']).as('organizations.index')
-//     router
-//       .delete('/organizations/:id', [OrganizationsController, 'destroy'])
-//       .as('organizations.destroy')
-//   })
-//   .use(middleware.auth())
+router
+  .group(() => {
+    router.get('/', [OrganizationsController, 'index']).as('organizations.index')
+    router.post('/', [OrganizationsController, 'store']).as('organizations.store')
+
+    router.get('/create', [OrganizationsController, 'create']).as('organizations.create')
+
+    router.get('/:id', [OrganizationsController, 'active']).as('organizations.active')
+    router.put('/:id', [OrganizationsController, 'update']).as('organizations.update')
+    router.delete('/:id', [OrganizationsController, 'destroy']).as('organizations.destroy')
+
+    router
+      .get('/invites/:id/accept', [OrganizationsController, 'acceptInvite'])
+      .as('organizations.invites.accept')
+  })
+  .prefix('/organizations')
+  .use(middleware.auth())
 
 // // @TODO: Add settings routes
 // // router

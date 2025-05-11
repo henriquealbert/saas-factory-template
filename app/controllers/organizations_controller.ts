@@ -28,7 +28,7 @@ export default class OrganizationsController {
   }
 
   /**
-   * Handle form submission for the create action
+   * Handle form submission for the creation action
    */
   async store({ request, response, auth }: HttpContext) {
     const data = await request.validateUsing(organizationValidator)
@@ -37,13 +37,16 @@ export default class OrganizationsController {
       data,
     })
 
-    this.setActiveOrganization.handle({ id: organization.id })
+    await this.setActiveOrganization.handle({ id: organization.id })
 
     return response.redirect().toRoute('home.index')
   }
 
+  /**
+   * Set active organization
+   */
   async active({ response, params }: HttpContext) {
-    this.setActiveOrganization.handle({ id: params.id })
+    await this.setActiveOrganization.handle({ id: params.id })
 
     return response.redirect().toRoute('home.index')
   }

@@ -10,6 +10,7 @@ export const loginValidator = vine.compile(
 
 export const registerValidator = vine.compile(
   vine.object({
+    name: vine.string().maxLength(254),
     email: vine
       .string()
       .maxLength(254)
@@ -19,7 +20,7 @@ export const registerValidator = vine.compile(
         const exists = await db.from('users').where('email', value).select('id').first()
         return !exists
       }),
-    password: vine.string().minLength(8),
+    password: vine.string().minLength(12),
   })
 )
 
@@ -32,6 +33,6 @@ export const passwordResetSendValidator = vine.compile(
 export const passwordResetValidator = vine.compile(
   vine.object({
     value: vine.string(),
-    password: vine.string().minLength(8),
+    password: vine.string().minLength(12),
   })
 )

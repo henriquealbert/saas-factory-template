@@ -2,6 +2,7 @@ import { Anchor, Button, PasswordInput, TextInput, Text } from '@mantine/core'
 import { Link, useForm } from '@inertiajs/react'
 import { Stack } from '@mantine/core'
 import { IconChevronRight } from '@tabler/icons-react'
+import { FormEvent } from 'react'
 
 export function RegisterForm() {
   const form = useForm({
@@ -11,7 +12,7 @@ export function RegisterForm() {
     password_confirmation: '',
   })
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     form.post('/register')
   }

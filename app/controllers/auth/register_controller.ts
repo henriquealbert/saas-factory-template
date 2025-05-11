@@ -32,7 +32,7 @@ export default class RegisterController {
       return response.redirect().toRoute('organizations.index')
     }
 
-    // return response.redirect().toRoute('organizations.create')
-    return response.redirect().toRoute('root')
+    // return response.redirect().toRoute('organizations.create') // @TODO: Uncomment this when organizations are implemented
+    return response.redirect().toRoute('home.index')
   }
 }

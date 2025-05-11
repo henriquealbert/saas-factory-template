@@ -49,6 +49,6 @@ export default class ForgotPasswordsController {
 
     session.flash('success', 'Your password has been updated')
 
-    return response.redirect().toRoute('login.show')
+    return response.redirect().toRoute('home.index')
   }
 }

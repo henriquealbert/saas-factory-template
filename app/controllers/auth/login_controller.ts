@@ -18,6 +18,6 @@ export default class LoginController {
       return response.redirect().back()
     }
 
-    return response.redirect().toRoute('organizations.index')
+    return response.redirect().toRoute('home.index')
   }
 }

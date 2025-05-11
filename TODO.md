@@ -19,6 +19,7 @@
 - [ ] Team invitations and role management (owner, admin, member)
   - [x] Basic invitation functionality
   - [ ] Role management implementation
+  - [ ] Seed Data with default roles
 - [ ] Organization settings
   - [ ] Settings Organization routes
   - [ ] User invitation system
@@ -32,7 +33,7 @@
   - [ ] SettingsAccountsController
   - [ ] SettingsOrganizationsController
   - [ ] Subscription controllers
-  - [ ] Flow builder related controllers
+  - [ ] Flow-builder-related controllers
   - [ ] Client integration controllers
   - [ ] Template controllers
   - [ ] Dashboard controllers

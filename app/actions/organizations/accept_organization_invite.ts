@@ -44,7 +44,7 @@ export default class AcceptOrganizationInvite {
     return {
       invite,
       state: 'success',
-      message: `Invitation successfully accepted`,
+      message: 'Invitation successfully accepted',
     }
   }
 }

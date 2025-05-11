@@ -1,7 +1,7 @@
 import { Group, Button, Container, Box, Divider } from '@mantine/core'
 import { Link } from '@inertiajs/react'
 
-export default function Root() {
+export default function PublicHome() {
   return (
     <Box py="md">
       <Container size="xl">
@@ -11,10 +11,10 @@ export default function Root() {
           </Link>
 
           <Group gap="xs">
-            <Button component={Link} href="/login" variant="default">
+            <Button component={Link} href="/login" variant="subtle">
               Login
             </Button>
-            <Button component={Link} href="/register">
+            <Button component={Link} href="/register" variant="outline">
               Sign up
             </Button>
           </Group>
